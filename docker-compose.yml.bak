@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+    web:
+      image: php:8.1-apache
+      restart: always
+      volumes: 
+         - ./code:/var/www/html
+         - ./logs:/var/log/apache2
+         - ./code/docker/000-default.conf:/etc/apache2/sites-available/000-default.conf
+         - ./ssl:/var/imported/ssl
+      ports:
+         - "14080:80"
+         - "14443:443"
