@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+    php1-apache-env:
+        container_name: php1-apache
+        build: ./
+        restart: always
+        volumes: 
+           - ./code:/var/www/html
+           - ./logs:/var/log/apache2
+           - ./code/docker/000-default.conf:/etc/apache2/sites-available/000-default.conf
+           - ./code/docker/security.conf:/etc/apache2/conf-available/security.conf
+           - ./ssl:/var/imported/ssl
+        ports:
+           - "14080:80"
+           - "14443:443"
